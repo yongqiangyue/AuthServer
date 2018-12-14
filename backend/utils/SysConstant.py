@@ -42,7 +42,7 @@ LOG_BACKUP_COUNT = 10
 
 
 # PPD
-PPD_PATH = '/usr/share/AuthServer/backend/extend/ppd_client_linux_x64/'
+PPD_PATH = './backend/extend/ppd_client_linux_x64/'
 PPD_CLASS_PATH = PPD_PATH + 'pgJNILib.jar:' + \
                  PPD_PATH + 'pgAppLib.jar:' + \
                  PPD_PATH + 'pgWebClient.jar:' + \
@@ -50,4 +50,4 @@ PPD_CLASS_PATH = PPD_PATH + 'pgJNILib.jar:' + \
 PPD_CONFIG = PPD_PATH + 'pgTunnelSvrTool.cfg'
 PPD_USER_HEAD = "_DEV_"
 PPD_USER_END = "@pptun.com"
-PPD_SLEEP_TIME = 4
+PPD_SLEEP_TIME = 8

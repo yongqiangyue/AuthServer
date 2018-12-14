@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 __author__ = 'xiliangma'
 
-from flask.ext.restful import Api
-
+from flask_restful import Api
 from FlaskManager import app
 from backend.restapi.APIDocResource import APIDoc
 from backend.restapi.UserResource import getRandomCodeAPI, checTelAPI, registerAPI, loginAPI, updatePwdAPI, getUserNASDevicesAPI

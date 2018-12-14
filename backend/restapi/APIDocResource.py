@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 __author__ = 'xiliangma'
 
-from flask.ext.restful import Resource
+from flask_restful import Resource
 from FlaskManager import app
 from FlaskManager import httpAuth
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 __author__ = 'xiliangma'
 
-from flask.ext.restful import Resource, reqparse
+from flask_restful import Resource, reqparse
 from FlaskManager import httpAuth
 from NASDevicesResourceImpl import bindUserNAS, removeUserNAS
 

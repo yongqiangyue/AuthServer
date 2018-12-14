@@ -174,7 +174,7 @@ def allocationPPDeviceID(object, type, tel):
 
     if iReqID < 0 and iReqID != -17:
         log.info("PPDService request ppdUserAdd. Failed:  iReqID = " + str(iReqID) )
-        return iReqID;
+        return iReqID
     else:
         log.info("PPDService request ppdUserAdd. Success: iReqID = " + str(iReqID))
 

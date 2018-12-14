@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 __author__ = 'xiliangma'
 
-
+from backend.utils.LogManager import Log
 import jpype, time, commands, os
 from SysConstant import PPD_CLASS_PATH, PPD_CONFIG, PPD_PATH
+
+logManager = Log()
+log = logManager.getLogger("PPDServiceManager")
 
 jvmArg = '-Djava.class.path=' + PPD_CLASS_PATH
 jvmPath = jpype.getDefaultJVMPath()
@@ -16,6 +19,7 @@ class JpypeManager():
         jrePath = jvmPath.split("server")[0]
         soPath = jrePath + "libpgJNI.so"
         cplibpgJNIComm = "cp " + PPD_PATH + "libpgJNI.so " + jrePath
+        log.info(cplibpgJNIComm)
         if not os.path.exists(soPath):
             (errorCode, output) = commands.getstatusoutput(cplibpgJNIComm)
         return errorCode

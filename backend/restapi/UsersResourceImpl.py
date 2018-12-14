@@ -139,7 +139,7 @@ def login(auth):
 
             data = {}
             data['sigKey'] = user.SigKey
-			data['name'] = user.Name
+            data['name'] = user.Name
             RETURNVALUE[VALUE].append(data)
 
         log.info(RETURNVALUE)
