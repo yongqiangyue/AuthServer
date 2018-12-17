@@ -1,6 +1,27 @@
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
+-- Table structure for AppVersion
+-- ----------------------------
+DROP TABLE IF EXISTS `AppVersion`;
+CREATE TABLE `AppVersion` (
+`appName` varchar(255) CHARACTER SET utf8 NOT NULL,
+`appVersion` varchar(255) CHARACTER SET utf8 NOT NULL,
+PRIMARY KEY (`appName`)
+);
+
+-- ----------------------------
+-- Table structure for HouseAddress
+-- ----------------------------
+DROP TABLE IF EXISTS `HouseAddress`;
+CREATE TABLE `HouseAddress` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`addressJson` mediumblob NULL,
+`tel` bigint(30) NOT NULL,
+PRIMARY KEY (`id`)
+);
+
+-- ----------------------------
 -- Table structure for User
 -- ----------------------------
 

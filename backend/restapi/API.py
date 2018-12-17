@@ -4,10 +4,13 @@ __author__ = 'xiliangma'
 from flask_restful import Api
 from FlaskManager import app
 from backend.restapi.APIDocResource import APIDoc
-from backend.restapi.UserResource import getRandomCodeAPI, checTelAPI, registerAPI, loginAPI, updatePwdAPI, getUserNASDevicesAPI
-from backend.restapi.PShareResource import addPShareAPI, getPSharesAPI, updatePShareAPI, removePShareAPI, removePShareByIDSAPI
+from backend.restapi.UserResource import getRandomCodeAPI, checTelAPI, registerAPI, loginAPI, updatePwdAPI, \
+    getUserNASDevicesAPI
+from backend.restapi.PShareResource import addPShareAPI, getPSharesAPI, updatePShareAPI, removePShareAPI, \
+    removePShareByIDSAPI
 from backend.restapi.NASDevicesResource import bindUserNASAPI, removeUserNASAPI
-
+from backend.restapi.AppVersionResource import AppVersionAPI
+from backend.restapi.HouseAddressResource import HouseAddressAPI
 
 api = Api(app)
 
@@ -15,6 +18,54 @@ api = Api(app)
     API Doc
 """
 api.add_resource(APIDoc, '/authserver')
+
+
+######################### houseAddress #######################
+"""
+    @api {get} /api/houseaddress/<tel>
+    @apiVersion 1.0.0
+    @apiName houseaddress
+    @apiGroup User
+    @apiDescription  Return app version with app type
+
+    @apiSuccessExample {json} Success-Response:
+                    {
+                    "code": 0,
+                    "message": "SUCCESS",
+                    "value": ""
+                    }
+    @apiErrorExample {json} Error-Response:
+                    {
+                    "code": 1,
+                    "message": "",
+                    "value": ""
+                    }
+"""
+api.add_resource(HouseAddressAPI, '/authserver/api/houseaddress/<tel>', endpoint="houseaddress")
+
+
+######################### appVersion #########################
+"""
+    @api {get} /api/appversion/<appName>
+    @apiVersion 1.0.0
+    @apiName appversion
+    @apiGroup User
+    @apiDescription  Return app version with app type
+
+    @apiSuccessExample {json} Success-Response:
+                    {
+                    "code": 0,
+                    "message": "SUCCESS",
+                    "value": ""
+                    }
+    @apiErrorExample {json} Error-Response:
+                    {
+                    "code": 1,
+                    "message": "",
+                    "value": ""
+                    }
+"""
+api.add_resource(AppVersionAPI, '/authserver/api/appversion/<appName>', endpoint="appversion")
 
 ############################ User ############################
 
@@ -38,8 +89,7 @@ api.add_resource(APIDoc, '/authserver')
                     "value": ""
                     }
 """
-api.add_resource(checTelAPI, '/authserver/api/user/<int:tel>/checktel', endpoint = "checktel")
-
+api.add_resource(checTelAPI, '/authserver/api/user/<int:tel>/checktel', endpoint="checktel")
 
 """
   @api {get} /api/user/<int:areacode>/<int:tel>/getrandomcode
@@ -61,8 +111,8 @@ api.add_resource(checTelAPI, '/authserver/api/user/<int:tel>/checktel', endpoint
                      "value": ""
                      }
 """
-api.add_resource(getRandomCodeAPI, '/authserver/api/user/<int:areacode>/<int:tel>/getrandomcode', endpoint = 'getrandomcode')
-
+api.add_resource(getRandomCodeAPI, '/authserver/api/user/<int:areacode>/<int:tel>/getrandomcode',
+                 endpoint='getrandomcode')
 
 """
     @api {post} /api/user/register
@@ -107,8 +157,7 @@ api.add_resource(getRandomCodeAPI, '/authserver/api/user/<int:areacode>/<int:tel
                         "value": ""
                         }
 """
-api.add_resource(registerAPI, '/authserver/api/user/register', endpoint = 'register')
-
+api.add_resource(registerAPI, '/authserver/api/user/register', endpoint='register')
 
 """
     @api {get} /api/user/login
@@ -130,8 +179,7 @@ api.add_resource(registerAPI, '/authserver/api/user/register', endpoint = 'regis
                        "value": ""
                        }
 """
-api.add_resource(loginAPI, '/authserver/api/user/login', endpoint = 'login')
-
+api.add_resource(loginAPI, '/authserver/api/user/login', endpoint='login')
 
 """
     @api {put} /api/user/<int:tel>/updatepwd
@@ -162,8 +210,7 @@ api.add_resource(loginAPI, '/authserver/api/user/login', endpoint = 'login')
                       "value": ""
                       }
 """
-api.add_resource(updatePwdAPI, '/authserver/api/user/<int:tel>/updatepwd', endpoint = 'updatepwd')
-
+api.add_resource(updatePwdAPI, '/authserver/api/user/<int:tel>/updatepwd', endpoint='updatepwd')
 
 """
     @api {get} /api/user/<int:tel>/nas
@@ -185,8 +232,7 @@ api.add_resource(updatePwdAPI, '/authserver/api/user/<int:tel>/updatepwd', endpo
                        "value": ""
                        }
 """
-api.add_resource(getUserNASDevicesAPI, '/authserver/api/user/<int:tel>/nas', endpoint = 'getUserNASDevices')
-
+api.add_resource(getUserNASDevicesAPI, '/authserver/api/user/<int:tel>/nas', endpoint='getUserNASDevices')
 
 ############################ PShare ############################
 """
@@ -233,8 +279,7 @@ api.add_resource(getUserNASDevicesAPI, '/authserver/api/user/<int:tel>/nas', end
                       "value": ""
                       }
 """
-api.add_resource(addPShareAPI, '/authserver/api/pshare', endpoint = 'addpshare')
-
+api.add_resource(addPShareAPI, '/authserver/api/pshare', endpoint='addpshare')
 
 """
     @api {post} /api/pshares
@@ -297,8 +342,7 @@ api.add_resource(addPShareAPI, '/authserver/api/pshare', endpoint = 'addpshare')
               "value": ""
               }
 """
-api.add_resource(getPSharesAPI, '/authserver/api/pshares', endpoint = 'getpshares')
-
+api.add_resource(getPSharesAPI, '/authserver/api/pshares', endpoint='getpshares')
 
 """
     @api {put} /api/pshare/<int:id>
@@ -323,8 +367,7 @@ api.add_resource(getPSharesAPI, '/authserver/api/pshares', endpoint = 'getpshare
                       "value": ""
                       }
 """
-api.add_resource(updatePShareAPI, '/authserver/api/pshare/<int:id>', endpoint = 'updatePShare')
-
+api.add_resource(updatePShareAPI, '/authserver/api/pshare/<int:id>', endpoint='updatePShare')
 
 """
     @api {post} /api/pshares/removepshare
@@ -361,8 +404,7 @@ api.add_resource(updatePShareAPI, '/authserver/api/pshare/<int:id>', endpoint = 
                       "value": ""
                       }
 """
-api.add_resource(removePShareAPI, '/authserver/api/pshares/removepshare', endpoint = 'removePShare')
-
+api.add_resource(removePShareAPI, '/authserver/api/pshares/removepshare', endpoint='removePShare')
 
 """
     @api {post} /api/pshares/removeByIds
@@ -393,8 +435,7 @@ api.add_resource(removePShareAPI, '/authserver/api/pshares/removepshare', endpoi
                       "value": ""
                       }
 """
-api.add_resource(removePShareByIDSAPI, '/authserver/api/pshares/removeByIds', endpoint = 'removePShareByIds')
-
+api.add_resource(removePShareByIDSAPI, '/authserver/api/pshares/removeByIds', endpoint='removePShareByIds')
 
 """
     @api {post} /api/nas/<int:nasId>/user/<int:tel>
@@ -423,8 +464,7 @@ api.add_resource(removePShareByIDSAPI, '/authserver/api/pshares/removeByIds', en
                       "value": ""
                       }
 """
-api.add_resource(bindUserNASAPI, '/authserver/api/nas/<int:nasId>/user/<int:tel>', endpoint = 'bindNASDevices')
-
+api.add_resource(bindUserNASAPI, '/authserver/api/nas/<int:nasId>/user/<int:tel>', endpoint='bindNASDevices')
 
 """
     @api {delete} /api/nas/<int:nasId>/user/<int:tel> 
@@ -446,4 +486,4 @@ api.add_resource(bindUserNASAPI, '/authserver/api/nas/<int:nasId>/user/<int:tel>
                       "value": ""
                       }
 """
-api.add_resource(removeUserNASAPI, '/authserver/api/nas/<int:nasId>/user/<int:tel>', endpoint = 'removeNASDevices')
+api.add_resource(removeUserNASAPI, '/authserver/api/nas/<int:nasId>/user/<int:tel>', endpoint='removeNASDevices')

@@ -21,3 +21,9 @@ PSHARE_NOT_EXIST_ERROR = "PShare not exist."
 # userNas
 NAS_USER_IS_BIND_ERROR = "User nad Nas id bind."
 NAS_USER_IS_NOT_BIND_ERROR = "User nad Nas is not bind."
+
+# appVersion
+APP_VERSION_GET_ERROR = "can not get app version."
+
+# houseAddress
+HOUSE_ADDRESS_GET_ERROR = "can not get house address with tel."
