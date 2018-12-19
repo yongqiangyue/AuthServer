@@ -10,7 +10,7 @@ from FlaskManager import db
 from backend.model.PShareModel import PShare
 from sqlalchemy import and_, or_
 import json
-import datetime
+from datetime import datetime
 
 
 logManager = Log()
@@ -138,7 +138,7 @@ def getPShares(param):
         # build return value
         now = datetime.now()
         for data in datas:
-            if now > data.expiration:
+            if data.expiration is not None and now > data.expiration:
                 continue
             pshare = {}
             pshare['id'] = data.Id
@@ -153,7 +153,8 @@ def getPShares(param):
             pshare['notes'] = data.Notes
             pshare['heat'] = data.HEAT
             pshare['thumbnail'] = data.Thumbnail
-            pshare['expiration'] = data.expiration
+            if data.expiration <> '':
+                pshare['expiration'] = data.expiration
             RETURNVALUE[VALUE].append(pshare)
 
         log.info(RETURNVALUE)
