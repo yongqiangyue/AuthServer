@@ -24,10 +24,38 @@ class PShare(db.Model):
     CreateTime = db.Column(TIMESTAMP)
     HEAT = db.Column(db.Integer)
     Thumbnail = db.Column(db.LargeBinary(length=65536))
+    expiration = db.Column(TIMESTAMP)
 
     def __repr__(self):
         return self
 
 if __name__ == "__main__":
-    db.create_all()
-    db.session.commit()
+    pass
+    # from datetime import datetime
+    # t = datetime.now()
+    # print(t)
+    # s = PShare.query.filter(PShare.Id == 3).first()
+    # # t2 = datetime.strptime(s.expiration, '%Y-%m-%d %H:%M:%S')
+    # # t2 = s.expiration.strftime("%Y-%m-%d %H:%M:%S")
+    # t2 = s.expiration
+    # print(t2)
+    # if t < t2:
+    #     print('show')
+    # else:
+    #     print('hide')
+    # print(t2)
+
+    # s = PShare()
+    # s.NasId = 114
+    # s.Tel = 8615810838355
+    # s.Name = 'zhang张'
+    # import time
+    # s.expiration = "2018-12-19 15:16:50"
+    # # s.CreateTime = time.time()
+    # db.session.add(s)
+    # db.session.commit()
+    # s = PShare.query.filter(PShare.Id == 3).first()
+    # print(s.Tel, s.expiration)
+
+    # db.create_all()
+    # db.session.commit()
