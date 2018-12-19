@@ -34,7 +34,7 @@ def register(param):
                 RETURNVALUE[MESSAGE] = "areaCode necessary parameters when type = 1."
                 log.error(RETURNVALUE)
                 return buildReturnValue(RETURNVALUE)
-            mobile =  str(param['areaCode']) + str(param['tel'])
+            mobile = str(param['areaCode']) + str(param['tel'])
             user = User.query.filter(User.Tel == mobile).first()
         else:
             mobile = param['tel']
@@ -77,12 +77,12 @@ def register(param):
 
 
         # Allocation PPDeviceID
-        iReqID = allocationPPDeviceID(user, 0, user.Tel)
-        if iReqID < 0 and iReqID != -17:
-            RETURNVALUE[MESSAGE] = BackendErrorMessage.SYSTEM_ERROR
-            RETURNVALUE[CODE] = BackendErrorCode.SYSTEM_ERROR
-            log.error(RETURNVALUE)
-            return buildReturnValue(RETURNVALUE)
+        # iReqID = allocationPPDeviceID(user, 0, user.Tel)
+        # if iReqID < 0 and iReqID != -17:
+        #     RETURNVALUE[MESSAGE] = BackendErrorMessage.SYSTEM_ERROR
+        #     RETURNVALUE[CODE] = BackendErrorCode.SYSTEM_ERROR
+        #     log.error(RETURNVALUE)
+        #     return buildReturnValue(RETURNVALUE)
 
 
         # createSigKey

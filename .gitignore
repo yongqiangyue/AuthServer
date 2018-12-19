@@ -42,3 +42,5 @@ nosetests.xml
 *.log*
 .DS_Store
 
+#sig
+backend/extend/tls_sig_api-linux-64/tools/*_sig

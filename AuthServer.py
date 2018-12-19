@@ -4,33 +4,33 @@ __author__ = 'xiliangma'
 
 import sys
 reload(sys)
-sys.setdefaultencoding( "utf-8")
+sys.setdefaultencoding("utf-8")
 from backend.restapi.API import app
 from backend.utils.LogManager import Log
-from backend.utils.PPDServiceManager import JpypeManager
+# from backend.utils.PPDServiceManager import JpypeManager
 
 
 logManager = Log()
 log = logManager.getLogger("AuthServer")
 
 
-jpypeManager = JpypeManager()
+# jpypeManager = JpypeManager()
 
-"""
-    1. build PPD Client environment
-"""
-status = jpypeManager.checPPDClient()
-if status == 0 :
-    log.info("Check PPD Client run environment success.")
-else:
-    log.error("Check PPD Client run environment failed.")
+# """
+#     1. build PPD Client environment
+# """
+# status = jpypeManager.checPPDClient()
+# if status == 0 :
+#     log.info("Check PPD Client run environment success.")
+# else:
+#     log.error("Check PPD Client run environment failed.")
 
 
-"""
-    2. init JpypeManager
-"""
-log.info("Start Jpype jvm...")
-jpypeManager.startJPype()
+# """
+#     2. init JpypeManager
+# """
+# log.info("Start Jpype jvm...")
+# jpypeManager.startJPype()
 
 
 # """

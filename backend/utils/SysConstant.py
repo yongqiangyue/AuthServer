@@ -16,6 +16,7 @@ DB_HOST = "127.0.0.1"
 DB_NAME = "authserver"
 
 # TLS
+# IM SDK AppID
 APP_ID = "1400045877"
 PRIVATE_KEY = "private_key"
 PUBLIC_KEY = "public_key"
@@ -23,6 +24,7 @@ tlsDir = "/backend/extend/tls_sig_api-linux-64/tools/"
 
 
 # SmsSenderManager
+# Sms App Key
 APP_KEY = "99149c9bd054676ee989e117aecd63e6"
 TEMPLATE_ID = 65720
 RANDOM_CODE_TIMEOUT = 5

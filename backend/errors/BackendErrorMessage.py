@@ -13,6 +13,8 @@ USER_PWD_ERROR = "Passwd error."
 RANDOM_CODE_VALIDATE_ERROR = "code validate error."
 RANDOM_CODE_INVALID_ERROR = "code invalid."
 RANDOM_NOT_EXIST_ERROR = "code not exist."
+RANDOM_CODE_INVALID_ERROR3 = "code invalid 3."
+RANDOM_CODE_INVALID_ERROR4 = "code invalid 4"
 
 # pshare
 PSHARE_IS_EXIST_ERROR = "PShare is exist."

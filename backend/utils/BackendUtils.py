@@ -243,14 +243,14 @@ def checkRandomCodeIsValid(tel, randomCode):
     userSession = UserSession.query.filter(UserSession.Tel == tel).first()
 
     if userSession is None:
-        errorCode = BackendErrorCode.RANDOM_CODE_INVALID_ERROR
-        errorMessage = BackendErrorMessage.RANDOM_CODE_INVALID_ERROR
+        errorCode = BackendErrorCode.RANDOM_CODE_INVALID_ERROR3
+        errorMessage = BackendErrorMessage.RANDOM_CODE_INVALID_ERROR3
         return userSession, errorCode, errorMessage
 
     # validate randomCode
     if userSession.RandomCode != randomCode:
-        errorCode = BackendErrorCode.RANDOM_CODE_VALIDATE_ERROR
-        errorMessage = BackendErrorMessage.RANDOM_CODE_VALIDATE_ERROR
+        errorCode = BackendErrorCode.RANDOM_CODE_VALIDATE_ERROR4
+        errorMessage = BackendErrorMessage.RANDOM_CODE_VALIDATE_ERROR4
         return userSession, errorCode, errorMessage
 
     # validate randomCode is invalid
