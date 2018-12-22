@@ -10,7 +10,7 @@ from FlaskManager import db
 from backend.model.PShareModel import PShare
 from sqlalchemy import and_, or_
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 logManager = Log()
@@ -42,7 +42,9 @@ def addPShare(param):
         pshare.Notes = param['notes']
         pshare.HEAT = param['heat']
         pshare.Thumbnail = param['thumbnail']
-        pshare.expiration = param['expiration']
+        # pshare.expiration = param['expiration']
+        pshare.expirationType = 0 if param['expiration'] == '' else 1
+        pshare.expiration = datetime.now() + timedelta(days=180) if pshare.expirationType == 0 else param['expiration']
         db.session.add(pshare)
 
         log.info(RETURNVALUE)
@@ -136,10 +138,7 @@ def getPShares(param):
                 datas = PShare.query.filter(nasIdFilter, shareIdFilter, typeFilter, nameFilter).filter(shareWithRule).filter(telsRule).order_by(sort.desc()).paginate(page, limit, False).items
 
         # build return value
-        now = datetime.now()
         for data in datas:
-            if data.expiration is not None and now > data.expiration:
-                continue
             pshare = {}
             pshare['id'] = data.Id
             pshare['name'] = data.Name
@@ -153,8 +152,11 @@ def getPShares(param):
             pshare['notes'] = data.Notes
             pshare['heat'] = data.HEAT
             pshare['thumbnail'] = data.Thumbnail
-            if data.expiration <> '':
-                pshare['expiration'] = data.expiration
+            if data.expiration <> '' and data.expiration is not None:
+                pshare['expiration'] = data.expiration.strftime('%Y-%m-%d %H:%M:%S')
+            pshare['expirationType'] = data.expirationType
+            if data.accessTime <> '' and data.accessTime is not None:
+                pshare['accessTime'] = data.accessTime.strftime('%Y-%m-%d %H:%M:%S')
             RETURNVALUE[VALUE].append(pshare)
 
         log.info(RETURNVALUE)
@@ -184,6 +186,7 @@ def updatePShare(id):
             return buildReturnValue(RETURNVALUE)
 
         pshare.HEAT = pshare.HEAT + 1
+        pshare.accessTime = datetime.now()
 
         log.info(RETURNVALUE)
         return buildReturnValue(RETURNVALUE)
