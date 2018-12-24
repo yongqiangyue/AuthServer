@@ -56,11 +56,12 @@ if __name__ == "__main__":
     # s.expiration = "2018-12-19 15:16:50"
     # s.expiration =  datetime.now() + timedelta(days=120)
     # s.CreateTime = time.time()
-    # s.expirationType = 100
+    # s.expirationType = 1
     # s.HEAT = 200
     # s.accessTime = "2088-12-19 15:16:50"
     # db.session.add(s)
     # db.session.commit()
+    # print('yueyq:', s.Id)
     # s = PShare.query.filter(PShare.Id == 17).first()
     # if s.accessTime <> '' and s.accessTime is not None:
     #     print(s.accessTime.strftime('%Y-%m-%d %H:%M:%S'))

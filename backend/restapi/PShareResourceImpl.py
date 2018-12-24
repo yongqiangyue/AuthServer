@@ -11,6 +11,7 @@ from backend.model.PShareModel import PShare
 from sqlalchemy import and_, or_
 import json
 from datetime import datetime, timedelta
+from backend.utils.BackendUtils import to_json
 
 
 logManager = Log()
@@ -46,7 +47,8 @@ def addPShare(param):
         pshare.expirationType = 0 if param['expiration'] == '' else 1
         pshare.expiration = datetime.now() + timedelta(days=180) if pshare.expirationType == 0 else param['expiration']
         db.session.add(pshare)
-
+        db.session.commit()
+        RETURNVALUE[VALUE] = to_json(pshare)
         log.info(RETURNVALUE)
         return buildReturnValue(RETURNVALUE)
 
