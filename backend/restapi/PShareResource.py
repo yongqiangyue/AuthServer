@@ -45,7 +45,10 @@ class getPSharesAPI(Resource):
 class updatePShareAPI(Resource):
     @httpAuth.login_required
     def put(self, id):
-        return updatePShare(id)
+        params = reqparse.RequestParser()
+        # expirationType = 2: 表示永久过期
+        params.add_argument("expirationType", type=int, location="json", required=False)
+        return updatePShare(id, params.parse_args())
 
 
 class removePShareAPI(Resource):

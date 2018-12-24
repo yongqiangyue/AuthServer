@@ -170,7 +170,7 @@ def getPShares(param):
         return buildReturnValue(RETURNVALUE)
 
 
-def updatePShare(id):
+def updatePShare(id, param):
     RETURNVALUE = {}
     RETURNVALUE[VALUE] = []
     RETURNVALUE[CODE] = 0
@@ -187,6 +187,8 @@ def updatePShare(id):
 
         pshare.HEAT = pshare.HEAT + 1
         pshare.accessTime = datetime.now()
+        if param['expirationType'] is not None:
+            pshare.expirationType = param['expirationType']
 
         log.info(RETURNVALUE)
         return buildReturnValue(RETURNVALUE)
