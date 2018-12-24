@@ -8,6 +8,7 @@ from backend.utils.BackendUtils import dbRollback, buildReturnValue
 from backend.utils.SysConstant import VALUE, CODE, MESSAGE
 from FlaskManager import db
 from backend.model.UserNASModel import UserNAS
+from backend.model.PShareModel import PShare
 
 
 logManager = Log()
@@ -57,7 +58,7 @@ def removeUserNAS(nasId, tel):
             return buildReturnValue(RETURNVALUE)
 
         UserNAS.query.filter(UserNAS.NasId == nasId, UserNAS.Tel == tel).delete()
-
+        PShare.query.filter(PShare.NasId == nasId, PShare.Tel == tel).delete()
         log.info(RETURNVALUE)
         return buildReturnValue(RETURNVALUE)
     except Exception as e:
