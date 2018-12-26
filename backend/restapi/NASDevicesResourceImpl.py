@@ -52,8 +52,8 @@ def removeUserNAS(nasId, tel):
     try:
         userNas = UserNAS.query.filter(UserNAS.NasId == nasId, UserNAS.Tel == tel).first()
         if userNas is None:
-            RETURNVALUE[CODE] = BackendErrorCode.NAS_IS_NOT_BIND_ERROR
-            RETURNVALUE[MESSAGE] = BackendErrorMessage.NAS_IS_NOT_BIND_ERROR
+            RETURNVALUE[CODE] = BackendErrorCode.NAS_USER_IS_NOT_BIND_ERROR
+            RETURNVALUE[MESSAGE] = BackendErrorMessage.NAS_USER_IS_NOT_BIND_ERROR
             log.error(RETURNVALUE)
             return buildReturnValue(RETURNVALUE)
 

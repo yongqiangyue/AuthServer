@@ -12,6 +12,7 @@ from sqlalchemy import and_, or_
 import json
 from datetime import datetime, timedelta
 from backend.utils.BackendUtils import to_json
+from sqlalchemy.sql import text
 
 
 logManager = Log()
@@ -76,7 +77,8 @@ def getPShares(param):
         tels = param['tels']
         type = param['type']
         shareWith = param['shareWith']
-        name = param['name']
+        # name = param['name']
+        notes = param['notes']
 
 
         if page is None:
@@ -122,23 +124,22 @@ def getPShares(param):
         else:
             typeFilter = PShare.Type == type
 
-
-        nameFilter = PShare.Name == name
-
-
+        notesFilter = text("LEFT(Notes, 100) LIKE :notes")
+        tt = PShare.query.filter(notesFilter)
         shareWithRule = or_(*[PShare.ShareWith.like(w) for w in shareWithWords])
         telsRule = or_(*[PShare.Tel.like(w) for w in telsWords])
         if sortType == 0 or sortType is None:
-            if name is None:
+            if notes is None:
                 datas = PShare.query.filter(nasIdFilter, shareIdFilter, typeFilter).filter(shareWithRule).filter(telsRule).order_by(sort.desc()).paginate(page, limit, False).items
             else:
-                datas = PShare.query.filter(nasIdFilter, shareIdFilter, typeFilter, nameFilter).filter(shareWithRule).filter(telsRule).order_by(sort.desc()).paginate(page, limit, False).items
+                notes = '%{0}%'.format(notes.strip())
+                datas = PShare.query.filter(nasIdFilter, shareIdFilter, typeFilter).filter(shareWithRule).filter(telsRule).filter(notesFilter).params(notes=notes).order_by(sort.desc()).paginate(page, limit, False).items
         else:
-            if name is None:
+            if notes is None:
                 datas = PShare.query.filter(nasIdFilter, shareIdFilter, typeFilter).filter(shareWithRule).filter(telsRule).order_by(sort.desc()).paginate(page, limit, False).items
             else:
-                datas = PShare.query.filter(nasIdFilter, shareIdFilter, typeFilter, nameFilter).filter(shareWithRule).filter(telsRule).order_by(sort.desc()).paginate(page, limit, False).items
-
+                notes = '%{0}%'.format(notes.strip())
+                datas = PShare.query.filter(nasIdFilter, shareIdFilter, typeFilter).filter(shareWithRule).filter(telsRule).filter(notesFilter).params(notes=notes).order_by(sort.desc()).paginate(page, limit, False).items
         # build return value
         for data in datas:
             pshare = {}

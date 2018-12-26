@@ -310,7 +310,7 @@ api.add_resource(addPShareAPI, '/authserver/api/pshare', endpoint='addpshare')
                    "nasId": 1,
                    "shareId": 12344544,
                    "tels": "18701656157, 18701656151",
-                   "name": "share1"
+                   "notes": "share1"
                  }
 
     @apiSuccessExample {json} Success-Response:
