@@ -23,15 +23,13 @@ def bindUserNAS(param, nasId, tel):
     try:
         userNas = UserNAS.query.filter(UserNAS.NasId == nasId, UserNAS.Tel == tel).first()
         if userNas is not None:
-            RETURNVALUE[CODE] = BackendErrorCode.NAS_USER_IS_BIND_ERROR
-            RETURNVALUE[MESSAGE] = BackendErrorMessage.NAS_USER_IS_BIND_ERROR
-            log.error(RETURNVALUE)
-            return buildReturnValue(RETURNVALUE)
-        userNas = UserNAS()
-        userNas.Tel = tel
-        userNas.NasId = nasId
-        userNas.IsAdmin = param['isAdmin']
-        db.session.add(userNas)
+            userNas.IsAdmin = param['isAdmin']
+        else:
+            userNas = UserNAS()
+            userNas.Tel = tel
+            userNas.NasId = nasId
+            userNas.IsAdmin = param['isAdmin']
+            db.session.add(userNas)
 
         log.info(RETURNVALUE)
         return buildReturnValue(RETURNVALUE)

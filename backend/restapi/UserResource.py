@@ -54,4 +54,6 @@ class updatePwdAPI(Resource):
 class getUserNASDevicesAPI(Resource):
     @httpAuth.login_required
     def get(self, tel):
-        return getUserNASDevices(tel)
+        params = reqparse.RequestParser()
+        params.add_argument("id", type=str, required=False)
+        return getUserNASDevices(tel, params.parse_args())

@@ -15,6 +15,7 @@ from backend.utils.SysConstant import ADMIN
 from backend.utils.LogManager import Log
 from FlaskManager import db
 import time, datetime
+from sqlalchemy import and_
 
 
 logManager = Log()
@@ -283,14 +284,17 @@ def checkTel(param):
         return buildReturnValue(RETURNVALUE)
 
 
-def getUserNASDevices(tel):
+def getUserNASDevices(tel, param):
     RETURNVALUE = {}
     RETURNVALUE[VALUE] = []
     RETURNVALUE[CODE] = 0
     RETURNVALUE[MESSAGE] = None
 
     try:
-        UserNASList = UserNAS.query.filter(UserNAS.Tel == tel).all()
+        UserNASList = UserNAS.query.filter(and_(UserNAS.Tel == tel, UserNAS.NasId == param['id'])).all()
+        if param['id'] is None:
+            UserNASList = UserNAS.query.filter(UserNAS.Tel == tel).all()
+
         for data in UserNASList:
             userNas = {}
             userNas['tel'] = data.Tel
