@@ -55,5 +55,5 @@ class getUserNASDevicesAPI(Resource):
     @httpAuth.login_required
     def get(self, tel):
         params = reqparse.RequestParser()
-        params.add_argument("id", type=str, required=False)
+        params.add_argument("id", type=str, location="args", required=False)
         return getUserNASDevices(tel, params.parse_args())
